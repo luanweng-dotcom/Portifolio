@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sensor de Cadeirante | Los Papas Pitufos</title>
+
+<style>
+:root {
+  --azul: #2463a6;
+  --azul-claro: #eaf3ff;
+  --fundo: #f4f6f9;
+  --texto: #263445;
+  --branco: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+  line-height: 1.7;
+}
+
+header {
+  background: var(--azul);
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 1.1rem;
+}
+
+nav {
+  background: white;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 8px #00000010;
+}
+
+nav a {
+  color: var(--azul);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 7px 12px;
+  border-radius: 6px;
+}
+
+nav a:hover {
+  background: var(--azul-claro);
+}
+
+main {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 18px;
+}
+
+section {
+  background: white;
+  padding: 28px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px #00000008;
+  scroll-margin-top: 90px;
+}
+
+h2 {
+  color: var(--azul);
+  margin-bottom: 18px;
+  border-bottom: 2px solid #e5edf7;
+  padding-bottom: 10px;
+}
+
+h3 {
+  margin: 18px 0 8px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+.destaque {
+  background: var(--azul-claro);
+  padding: 16px;
+  border-left: 4px solid var(--azul);
+  border-radius: 5px;
+  margin: 12px 0;
+}
+
+.integrantes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.integrante {
+  background: #f7f9fc;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #e1e8f0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #dce3eb;
+  text-align: left;
+}
+
+th {
+  background: var(--azul);
+  color: white;
+}
+
+tr:nth-child(even) {
+  background: #f7f9fc;
+}
+
+.upload-area {
+  background: #f7f9fc;
+  border: 2px dashed #a8bfdc;
+  border-radius: 10px;
+  padding: 22px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+input[type="file"] {
+  max-width: 100%;
+  margin: 12px 0;
+}
+
+.preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.preview img, .preview video {
+  width: 100%;
+  max-height: 350px;
+  object-fit: contain;
+  background: #edf0f4;
+  border-radius: 8px;
+}
+
+button {
+  background: var(--azul);
+  color: white;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 5px;
+}
+
+button:hover {
+  background: #174777;
+}
+
+.resultado {
+  display: none;
+  background: #eaf7ee;
+  border-left: 4px solid #329653;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
+footer {
+  background: #20364f;
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+  margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+  section {
+    padding: 20px 15px;
+  }
+
+  nav {
+    position: static;
+  }
+
+  table {
+    font-size: 0.88rem;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🤖 Sensor de Cadeirante</h1>
+  <p>Projeto de robótica — Los Papas Pitufos</p>
+  <p>2º Ano B | Início: 10/09/2026</p>
+</header>
+
+<nav>
+  <a href="#grupo">Grupo</a>
+  <a href="#ideia">Nossa ideia</a>
+  <a href="#planejamento">Planejamento</a>
+  <a href="#componentes">Componentes</a>
+  <a href="#midias">Fotos e vídeos</a>
+  <a href="#resultado">Resultado</a>
+</nav>
+
+<main>
+
+<section id="grupo">
+  <h2>👥 1. Identificação do grupo</h2>
+
+  <p><strong>Nome do projeto:</strong> Sensor de Cadeirante</p>
+  <p><strong>Nome do grupo:</strong> Los Papas Pitufos</p>
+  <p><strong>Turma:</strong> 2º Ano B</p>
+  <p><strong>Data de início:</strong> 10/09/2026</p>
+
+  <h3>Integrantes</h3>
+
+  <div class="integrantes">
+    <div class="integrante">
+      <strong>Ryan</strong>
+      <p>Número: 36</p>
+    </div>
+    <div class="integrante">
+      <strong>Luan</strong>
+      <p>Número: 29</p>
+    </div>
+    <div class="integrante">
+      <strong>Gustavo</strong>
+      <p>Número: 17</p>
+    </div>
+    <div class="integrante">
+      <strong>Jesús</strong>
+      <p>Número: 23</p>
+    </div>
+  </div>
+</section>
+
+<section id="ideia">
+  <h2>💡 2. Nossa ideia</h2>
+
+  <h3>Qual problema queremos resolver?</h3>
+  <p>
+    Queremos ajudar pessoas que utilizam cadeira de rodas a serem
+    identificadas por uma porta automática, contribuindo para uma
+    experiência de acesso mais inclusiva.
+  </p>
+
+  <h3>Qual foi a nossa ideia?</h3>
+  <div class="destaque">
+    Criar um sensor que ajude a detectar a presença de uma pessoa
+    em cadeira de rodas e sinalize essa detecção.
+  </div>
+
+  <h3>🎯 Objetivo do protótipo</h3>
+  <p>
+    Desenvolver um protótipo de robótica capaz de detectar um alvo
+    de referência e acender um LED quando a detecção ocorrer.
+    A ideia é estudar como essa tecnologia poderia auxiliar
+    sistemas de acesso automatizados.
+  </p>
+
+  <h3>🤖 Utilizamos Inteligência Artificial?</h3>
+  <p><strong>Resposta:</strong> Não.</p>
+  <p><strong>Pergunta ou orientação feita à IA:</strong> Não houve.</p>
+</section>
+
+<section id="planejamento">
+  <h2>✏️ 3. Nosso planejamento</h2>
+
+  <h3>Desenho ou esboço da ideia</h3>
+  <p>
+    Nesta etapa, planejamos a posição do sensor, da placa Arduino
+    e do LED que indicará quando algo for detectado.
+  </p>
+
+  <div class="upload-area">
+    <p><strong>📸 Foto do desenho ou esboço</strong></p>
+    <p>Selecione uma imagem do planejamento para visualizá-la aqui.</p>
+    <input type="file" id="fotoPlanejamento" accept="image/*">
+    <div id="previewPlanejamento" class="preview"></div>
+  </div>
+
+  <h3>⚙️ Como imaginamos que o protótipo irá funcionar?</h3>
+  <p>
+    O sensor será conectado à placa Arduino. Quando identificar
+    um objeto ou alvo dentro de suas condições de detecção,
+    o Arduino acionará o LED. Assim, o sistema indicará que
+    a detecção aconteceu.
+  </p>
+
+  <p>
+    Em uma aplicação real, seria necessário avaliar o tipo de sensor
+    e testar se ele consegue identificar adequadamente a situação
+    desejada. Um sensor comum de proximidade não reconhece, por si só,
+    se uma pessoa está utilizando cadeira de rodas.
+  </p>
+</section>
+
+<section id="componentes">
+  <h2>🔧 4. Componentes utilizados ou planejados</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Componente</th>
+        <th>Para que será utilizado?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Placa Arduino</td>
+        <td>Controlar o funcionamento do sistema.</td>
+      </tr>
+      <tr>
+        <td>Sensor</td>
+        <td>Detectar a presença de um objeto ou alvo próximo.</td>
+      </tr>
+      <tr>
+        <td>Hiago</td>
+        <td>Referência humana para a demonstração do projeto.</td>
+      </tr>
+      <tr>
+        <td>LED</td>
+        <td>Acender quando a detecção for identificada.</td>
+      </tr>
+      <tr>
+        <td>Resistor</td>
+        <td>Limitar a corrente elétrica e proteger o LED.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="margin-top: 15px;">
+    <em>Observação: a lista será ajustada conforme os componentes
+    realmente utilizados na montagem.</em>
+  </p>
+</section>
+
+<section id="midias">
+  <h2>📸 5. Fotos e vídeos do processo</h2>
+  <p>
+    Aqui podemos mostrar os registros da montagem, as conexões,
+    os testes e o funcionamento do protótipo.
+  </p>
+
+  <div class="upload-area">
+    <h3>Adicionar fotos</h3>
+    <input type="file" id="fotos" accept="image/*" multiple>
+    <div id="previewFotos" class="preview"></div>
+  </div>
+
+  <div class="upload-area">
+    <h3>Adicionar vídeos</h3>
+    <input type="file" id="videos" accept="video/*" multiple>
+    <div id="previewVideos" class="preview"></div>
+  </div>
+</section>
+
+<section id="resultado">
+  <h2>🏁 6. Resultado do projeto</h2>
+
+  <p>
+    Nesta seção, apresentaremos o protótipo montado e explicaremos
+    o que conseguimos desenvolver durante o processo.
+  </p>
+
+  <h3>O que esperamos demonstrar?</h3>
+  <ul style="padding-left: 25px;">
+    <li>A integração entre o sensor e a placa Arduino.</li>
+    <li>A identificação de um alvo dentro do alcance do sensor.</li>
+    <li>O acionamento do LED após a detecção.</li>
+    <li>As possibilidades de aplicação da tecnologia em acessibilidade.</li>
+  </ul>
+
+  <h3>Como foi o teste?</h3>
+  <p>
+    <textarea id="relato" rows="4" style="width:100%;padding:12px;border:1px solid #ccd5df;border-radius:6px;font:inherit;"
+    placeholder="Descrevam aqui o que aconteceu durante os testes, o que funcionou e o que precisou ser ajustado."></textarea>
+  </p>
+
+  <button onclick="mostrarResultado()">Mostrar relato do teste</button>
+
+  <div id="relatoFinal" class="resultado"></div>
+
+  <h3>Conclusão</h3>
+  <p>
+    Com este projeto, buscamos aprender na prática como utilizar
+    sensores, programação e componentes eletrônicos para desenvolver
+    uma solução relacionada à acessibilidade. O protótipo também nos
+    permite compreender a importância de testar e aperfeiçoar uma ideia
+    antes de aplicá-la em uma situação real.
+  </p>
+</section>
+
+</main>
+
+<footer>
+  <p><strong>Los Papas Pitufos</strong></p>
+  <p>Projeto de Robótica — 2º Ano B</p>
+  <p>Sensor de Cadeirante | 2026</p>
+</footer>
+
+<script>
+// Exibe uma prévia da imagem selecionada.
+function mostrarImagens(inputId, previewId) {
+  const input = document.getElementById(inputId);
+  const preview = document.getElementById(previewId);
+
+  input.addEventListener("change", function () {
+    preview.innerHTML = "";
+
+    Array.from(this.files).forEach(function (arquivo) {
+      if (!arquivo.type.startsWith("image/")) return;
+
+      const imagem = document.createElement("img");
+      imagem.src = URL.createObjectURL(arquivo);
+      imagem.alt = arquivo.name;
+      imagem.title = arquivo.name;
+
+      preview.appendChild(imagem);
+    });
+  });
+}
+
+mostrarImagens("fotoPlanejamento", "previewPlanejamento");
+mostrarImagens("fotos", "previewFotos");
+
+// Exibe uma prévia dos vídeos selecionados.
+document.getElementById("videos").addEventListener("change", function () {
+  const preview = document.getElementById("previewVideos");
+  preview.innerHTML = "";
+
+  Array.from(this.files).forEach(function (arquivo) {
+    if (!arquivo.type.startsWith("video/")) return;
+
+    const video = document.createElement("video");
+    video.src = URL.createObjectURL(arquivo);
+    video.controls = true;
+    video.preload = "metadata";
+
+    preview.appendChild(video);
+  });
+});
+
+// Apresenta o relato dos testes.
+function mostrarResultado() {
+  const relato = document.getElementById("relato").value.trim();
+  const resultado = document.getElementById("relatoFinal");
+
+  resultado.textContent = relato
+    ? "Relato dos testes: " + relato
+    : "Ainda não foi escrito um relato. Preencham o campo acima com o resultado real dos testes.";
+
+  resultado.style.display = "block";
+}
+</script>
+
+</body>
+</html>
